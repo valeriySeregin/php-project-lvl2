@@ -1,0 +1,15 @@
+{
+    "name": "hexlet/code",
+    "description": "hexlet learning project",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Valeriy Seregin",
+            "email": "valera-s-38@mail.ru"
+        }
+    ],
+    "require": {
+        "docopt/docopt": "^1.0"
+    }
+}
