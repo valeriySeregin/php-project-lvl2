@@ -10,7 +10,9 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-$doc = <<<DOC
+use function App\run;
+
+$doc = <<<DOCOPT
 
 Generate diff
 
@@ -23,8 +25,8 @@ Options:
   -h --help                     Show this screen
   -v --version                  Show version
   --format <fmt>                Report format [default: stylish]
-DOC;
+DOCOPT;
 
-$args = Docopt::handle($doc, array('version'=>'v0.0.1'));
-foreach ($args as $k=>$v)
-    echo $k.': '.json_encode($v).PHP_EOL;
+$args = Docopt::handle($doc, array('version'=>'v0.0.2'));
+$result = run($args);
+print_r($result);
