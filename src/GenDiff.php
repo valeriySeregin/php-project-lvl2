@@ -63,10 +63,18 @@ function getFileContents($filepath)
     return file_get_contents($filepath);
 }
 
-function changeBooleanIntoText($value)
+function changeInvinsibleTypes($value)
 {
     if (is_bool($value)) {
         return $value === true ? 'true' : 'false';
+    }
+
+    if (is_null($value)) {
+        return 'null';
+    }
+
+    if (is_string($value) && strlen($value) === 0) {
+        return '';
     }
 
     return $value;
@@ -96,8 +104,8 @@ function getStylishOutput($data)
             return [
                 'key' => $node['key'],
                 'value' => [
-                    changeBooleanIntoText($node['value'][0]),
-                    changeBooleanIntoText($node['value'][1])
+                    changeInvinsibleTypes($node['value'][0]),
+                    changeInvinsibleTypes($node['value'][1])
                 ],
                 'status' => $node['status']
             ];
@@ -105,7 +113,7 @@ function getStylishOutput($data)
 
         return [
             'key' => $node['key'],
-            'value' => changeBooleanIntoText($node['value']),
+            'value' => changeInvinsibleTypes($node['value']),
             'status' => $node['status']
         ];
     }, $data);
