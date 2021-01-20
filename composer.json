@@ -12,7 +12,9 @@
           "Php\\Package\\Tests\\": "tests"
         },
         "files": [
-            "src/GenDiff.php"
+            "src/GenDiff.php",
+            "src/Parsers/JsonParser.php",
+            "src/Parsers/YamlParser.php"
         ]
     },
     "authors": [
@@ -22,7 +24,8 @@
         }
     ],
     "require": {
-        "docopt/docopt": "^1.0"
+        "docopt/docopt": "^1.0",
+        "symfony/yaml": "^5.2"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5",
