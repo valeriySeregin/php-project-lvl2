@@ -1,10 +1,10 @@
 <?php
 
-namespace GenDiff\Parsers\YamlParser;
+namespace GenDiff\Parsers;
 
 use Symfony\Component\Yaml\Yaml;
 
-function parse($data)
+function parseYaml(string $data): object
 {
-    return Yaml::parse($data);
+    return Yaml::parse($data, Yaml::PARSE_OBJECT_FOR_MAP);
 }

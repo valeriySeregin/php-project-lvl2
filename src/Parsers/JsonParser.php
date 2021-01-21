@@ -1,8 +1,8 @@
 <?php
 
-namespace GenDiff\Parsers\JsonParser;
+namespace GenDiff\Parsers;
 
-function parse($data)
+function parseJson(string $data): object
 {
-    return json_decode($data, true);
+    return json_decode($data);
 }

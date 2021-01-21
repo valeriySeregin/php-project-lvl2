@@ -8,24 +8,63 @@ use function GenDiff\genDiff;
 
 class GenDiffTest extends TestCase
 {
-    public function testGenDiff(): void
+    private function makeFilepath(string $filename): string
     {
-        $argsWithJsonExt = [
-            '<firstFile>' => __DIR__ . '/fixtures/before.json',
-            '<secondFile>' => __DIR__ . '/fixtures/after.json'
+        $parts = [__DIR__, 'fixtures', $filename];
+        return implode(DIRECTORY_SEPARATOR, $parts);
+    }
+
+    /**
+     * @dataProvider defaultOutputProvider
+     */
+    public function testDefaultFormatOutput(string $filename1, string $filename2, string $expectedFilename): void
+    {
+        $expectedOutput = file_get_contents($this->makeFilepath($expectedFilename));
+        $this->assertSame($expectedOutput, genDiff($this->makeFilepath($filename1), $this->makeFilepath($filename2)));
+    }
+
+    /**
+     * @dataProvider differentFormatsProvider
+     */
+    public function testDifferentFormatOutputs(
+        string $filename1,
+        string $filename2,
+        string $format,
+        string $expectedFilename
+    ): void {
+        $expectedOutput = file_get_contents($this->makeFilepath($expectedFilename));
+        $this->assertSame($expectedOutput, genDiff(
+            $this->makeFilepath($filename1),
+            $this->makeFilepath($filename2),
+            $format
+        ));
+    }
+
+    public function defaultOutputProvider(): array
+    {
+        return [
+            'default output for json files' => [
+                'before.json',
+                'after.json',
+                'expectedStylish.txt'
+            ],
+            'default output for yaml files' => [
+                'before.yaml',
+                'after.yaml',
+                'expectedStylish.txt'
+            ]
         ];
+    }
 
-        $argsWithYamlExt = [
-            '<firstFile>' => __DIR__ . '/fixtures/before.yaml',
-            '<secondFile>' => __DIR__ . '/fixtures/after.yaml'
+    public function differentFormatsProvider(): array
+    {
+        return [
+            'stylish output' => [
+                'before.json',
+                'after.json',
+                'stylish',
+                'expectedStylish.txt'
+            ]
         ];
-
-        $diffForJsonExt = genDiff($argsWithJsonExt);
-        $diffForYamlExt = genDiff($argsWithYamlExt);
-
-        $expected = file_get_contents(__DIR__ . '/fixtures/diff.txt');
-
-        $this->assertEquals($diffForJsonExt, $expected);
-        $this->assertEquals($diffForYamlExt, $expected);
     }
 }

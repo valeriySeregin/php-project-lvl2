@@ -12,9 +12,12 @@
           "Php\\Package\\Tests\\": "tests"
         },
         "files": [
-            "src/GenDiff.php",
+            "src/DiffGenerator.php",
             "src/Parsers/JsonParser.php",
-            "src/Parsers/YamlParser.php"
+            "src/Parsers/YamlParser.php",
+            "src/Parsers.php",
+            "src/Formatters/Stylish.php",
+            "src/Formatters.php"
         ]
     },
     "authors": [
@@ -24,8 +27,10 @@
         }
     ],
     "require": {
+        "php": ">=7.4",
         "docopt/docopt": "^1.0",
-        "symfony/yaml": "^5.2"
+        "symfony/yaml": "^5.2",
+        "funct/funct": "^1.5"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5",
