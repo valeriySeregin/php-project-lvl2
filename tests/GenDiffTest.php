@@ -4,11 +4,11 @@ namespace Php\Package\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-use function App\getDiff;
+use function GenDiff\genDiff;
 
 class GenDiffTest extends TestCase
 {
-    public function testGetDiff(): void
+    public function testGenDiff(): void
     {
         $argsWithJsonExt = [
             '<firstFile>' => __DIR__ . '/fixtures/before.json',
@@ -20,8 +20,8 @@ class GenDiffTest extends TestCase
             '<secondFile>' => __DIR__ . '/fixtures/after.yaml'
         ];
 
-        $diffForJsonExt = getDiff($argsWithJsonExt);
-        $diffForYamlExt = getDiff($argsWithYamlExt);
+        $diffForJsonExt = genDiff($argsWithJsonExt);
+        $diffForYamlExt = genDiff($argsWithYamlExt);
 
         $expected = file_get_contents(__DIR__ . '/fixtures/diff.txt');
 

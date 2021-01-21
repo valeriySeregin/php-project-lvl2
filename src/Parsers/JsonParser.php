@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Parsers\JsonParser;
+namespace GenDiff\Parsers\JsonParser;
 
 function parse($data)
 {

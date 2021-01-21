@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Parsers\YamlParser;
+namespace GenDiff\Parsers\YamlParser;
 
 use Symfony\Component\Yaml\Yaml;
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace GenDiff;
 
-use function App\Parsers\JsonParser\parse as parseJson;
-use function App\Parsers\YamlParser\parse as parseYaml;
+use function GenDiff\Parsers\JsonParser\parse as parseJson;
+use function GenDiff\Parsers\YamlParser\parse as parseYaml;
 
 const PATH_TO_FIRST_FILE = '<firstFile>';
 const PATH_TO_SECOND_FILE = '<secondFile>';
 const FORMAT = '--format';
 
-function getDiff($args)
+function genDiff($args)
 {
     $firstFilepath = $args[PATH_TO_FIRST_FILE];
     $secondFilepath = $args[PATH_TO_SECOND_FILE];
