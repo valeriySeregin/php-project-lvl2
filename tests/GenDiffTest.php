@@ -64,6 +64,12 @@ class GenDiffTest extends TestCase
                 'after.json',
                 'stylish',
                 'expectedStylish.txt'
+            ],
+            'plain output' => [
+                'before.json',
+                'after.json',
+                'plain',
+                'expectedPlain.txt'
             ]
         ];
     }

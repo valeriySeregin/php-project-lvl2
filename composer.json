@@ -17,6 +17,7 @@
             "src/Parsers/YamlParser.php",
             "src/Parsers.php",
             "src/Formatters/Stylish.php",
+            "src/Formatters/Plain.php",
             "src/Formatters.php"
         ]
     },
