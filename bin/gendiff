@@ -14,19 +14,30 @@ use function GenDiff\genDiff;
 
 $doc = <<<DOCOPT
 
-Generate diff
+  Generate diff
 
-Usage:
-  gendiff (-h|--help)
-  gendiff (-v|--version)
-  gendiff [--format <fmt>] <firstFile> <secondFile>
+  Usage:
+    gendiff (-h|--help)
+    gendiff (-v|--version)
+    gendiff [--format <fmt>] <firstFile> <secondFile>
 
-Options:
-  -h --help                     Show this screen
-  -v --version                  Show version
-  --format <fmt>                Report format [default: stylish]
-DOCOPT;
+  Options:
+    -h --help                     Show this screen
+    -v --version                  Show version
+    --format <fmt>                Report format [default: stylish]
 
-$args = Docopt::handle($doc, array('version'=>'v0.0.2'));
-$result = genDiff($args);
-print_r($result);
+  Report formats:
+    <fmt>
+        pretty                 Show changes in files marked with symbols "+/-" 
+        plain                  Show changes in files explained by the text
+        json                   Show changes in files as a JSON string
+  DOCOPT;
+
+$args = Docopt::handle($doc, array('version'=>'v1.0.0'));
+[
+    '<firstFile>' => $pathToFirstFile,
+    '<secondFile>' => $pathToSecondFile,
+    '--format' => $format
+] = $args;
+$diff = genDiff($pathToFirstFile, $pathToSecondFile, $format);
+print_r($diff);
