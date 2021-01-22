@@ -20,7 +20,7 @@ function genDiff(string $firstFilepath, string $secondFilepath, string $format =
     $tree = generateDiffTree($firstFileData, $secondFileData);
     $diff = formatData($tree, $format);
 
-    return "{$diff}\n";
+    return $diff;
 }
 
 function read(string $filepath): string
