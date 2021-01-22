@@ -5,6 +5,7 @@ namespace Differ\Differ;
 use function Differ\Differ\Parsers\parseData;
 use function Differ\Differ\Formatters\formatData;
 use function Funct\Collection\union;
+use function Funct\Collection\sortBy;
 
 function genDiff(string $firstFilepath, string $secondFilepath, string $format = 'stylish'): string
 {
@@ -37,9 +38,9 @@ function generateDiffTree(object $dataBefore, object $dataAfter): array
 {
     $unitedKeys = union(array_keys(get_object_vars($dataBefore)), array_keys(get_object_vars($dataAfter)));
 
-    sort($unitedKeys);
+    $sortedKeys = sortBy($unitedKeys, fn($key) => $key);
 
-    return array_map(function ($key) use ($dataBefore, $dataAfter) {
+    return array_map(function ($key) use ($dataBefore, $dataAfter): array {
         if (!property_exists($dataBefore, $key)) {
             return makeNode($key, 'added', $dataAfter->$key);
         }
@@ -57,7 +58,7 @@ function generateDiffTree(object $dataBefore, object $dataAfter): array
         }
 
         return makeNode($key, 'changed', $dataAfter->$key, $dataBefore->$key);
-    }, array_values($unitedKeys));
+    }, array_values($sortedKeys));
 }
 
 /**

@@ -16,9 +16,9 @@ function getIndent(int $num): string
  */
 function stringify($value, $depth)
 {
-    $stringifyComplexValue = function ($complexValue, $depth) {
+    $stringifyComplexValue = function ($complexValue, $depth): string {
         $indent = getIndent($depth);
-        $iter = function ($value, $key) use ($depth, $indent) {
+        $iter = function ($value, $key) use ($depth, $indent): string {
             $formattedValue = stringify($value, $depth);
             return "{$indent}    {$key}: {$formattedValue}";
         };
@@ -44,7 +44,7 @@ function stringify($value, $depth)
 function generateStylishOutput(array $tree, int $depth = 0): string
 {
     $indent = getIndent($depth);
-    $output = array_map(function ($node) use ($depth, $indent) {
+    $output = array_map(function ($node) use ($depth, $indent): string {
         switch ($node['state']) {
             case 'added':
                 $formattedValue = stringify($node['value'], $depth);
@@ -65,8 +65,7 @@ function generateStylishOutput(array $tree, int $depth = 0): string
 
             case 'nested':
                 $stylishOutput = generateStylishOutput($node['children'], $depth + 1);
-                $indent = getIndent($depth + 1);
-                return "{$indent}{$node['name']}: {$stylishOutput}";
+                return "{$indent}    {$node['name']}: {$stylishOutput}";
 
             default:
                 throw new \Exception('Invalid node status!');
