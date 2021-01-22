@@ -1,6 +1,6 @@
 <?php
 
-namespace GenDiff\Formatters\Stylish;
+namespace Differ\Differ\Formatters\Stylish;
 
 const INDENT_LENGTH = 4;
 

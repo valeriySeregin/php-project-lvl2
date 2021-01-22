@@ -1,6 +1,6 @@
 <?php
 
-namespace GenDiff\Formatters\Plain;
+namespace Differ\Differ\Formatters\Plain;
 
 use function Funct\Collection\flattenAll;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace GenDiff;
+namespace Differ\Differ;
 
-use function GenDiff\Parsers\parseData;
-use function GenDiff\Formatters\formatData;
+use function Differ\Differ\Parsers\parseData;
+use function Differ\Differ\Formatters\formatData;
 use function Funct\Collection\union;
 
 function genDiff(string $firstFilepath, string $secondFilepath, string $format = 'stylish'): string
