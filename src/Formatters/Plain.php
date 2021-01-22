@@ -38,7 +38,7 @@ function generatePlainOutput(array $tree, array $propertyNames): array
                 return "Property '{$name}' was removed";
 
             case 'unchanged':
-                return "Property '{$name}' was not changed";
+                return "";
 
             case 'changed':
                 $oldValue = stringify($child['oldValue']);
@@ -53,7 +53,9 @@ function generatePlainOutput(array $tree, array $propertyNames): array
         }
     }, $tree);
 
-    return flattenAll($output);
+    $filteredOutput = array_filter($output, fn($part) => $part !== '');
+
+    return flattenAll($filteredOutput);
 }
 
 function render(array $data): string
